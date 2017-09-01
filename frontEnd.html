@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Appointment</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="frontEnd.js"></script>
+</head>
+    
+<body>
+<div id="error" style="color:red">
+</div>
+
+<div id="content">
+<input id="btnNew" type="submit" value="NEW"/>
+<input id="btnCancel" type="button" value="CANCEL" hidden/>
+<br>
+<br> 
+<div id="input" hidden>
+<form id="submitForm" action="/cgi-bin/backend.pl" method="post">
+DATE :<input id="date" name="date" onchange="validateDate()" required type="date"><br>
+TIME :<input id="time" name="time" type="time"><br>
+DESC :<input id="disc" name="disc" type="text"><br><br> 
+<!--<input id="btnS" type="submit" value="Submit"/>-->
+</form>
+</div>
+<br>
+    
+<input id="txtParam" type="text" /> 
+<input id="btnSearch" type="button" value="SEARCH"/>
+
+<a href="/cgi-bin/backend.pl"> Click here to see the raw JSON data</a>
+</div>
+<br>
+    
+<div id="appointments" style="color:blue">
+</div>
+
+</body>
+    
+<script type="text/javascript">
+    
+function validateDate(){
+   let selectedText = document.getElementById('date').value;
+   let selectedDate = new Date(selectedText);
+   let now = new Date();
+   
+   if (selectedDate > now) {
+        alert("Date is valid");    
+   }
+    else{
+        alert("Date is invalid"); 
+        selectedText.focus = true;
+    }
+   
+} 
+    
+</script>
+
+</html>
